@@ -49,11 +49,11 @@ public interface ClientAPI {
 	
 	@DeleteMapping("/{id}/deleteClient")
 	@Transactional
-	public ResponseEntity<List<ClientDTO>> deleteClient(@PathVariable Long id);
+	public void deleteClient(@PathVariable Long id);
 	
 	@PutMapping("/{id}/editClient")
 	@Transactional
-	public ResponseEntity<List<ClientDTO>> updateClient(@PathVariable Long id, @Validated @RequestBody ClientForm form);
+	public ResponseEntity<ClientDTO> updateClient(@PathVariable Long id, @Validated @RequestBody ClientForm form);
 	
 	
 
