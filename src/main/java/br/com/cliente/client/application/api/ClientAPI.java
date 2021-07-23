@@ -1,10 +1,9 @@
 package br.com.cliente.client.application.api;
 
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
@@ -23,25 +22,27 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.cliente.exception.BusinessException;
+
 @RestController
 @RequestMapping("/v1/client")
 public interface ClientAPI {
 	
 	@GetMapping("/findAll")
 	@ResponseStatus(value = HttpStatus.OK)
-	public ResponseEntity<List<ClientDTO>> findALL(@PageableDefault(sort = "name", direction = Direction.DESC, page = 0, size = 10) Pageable page);
+	public Page<ClientDTO> findALL(@PageableDefault(sort = "name", direction = Direction.DESC, page = 0, size = 10) Pageable page);
 	
 	@GetMapping("/findByName")
 	@ResponseStatus(value = HttpStatus.OK)
-	public ResponseEntity<List<ClientDTO>> findByName(@RequestParam String name,@RequestParam Integer idade, @PageableDefault(sort = "name", direction = Direction.DESC, page = 0, size = 10) Pageable page);
+	public Page<ClientDTO> findByName(@RequestParam String name,@RequestParam Integer age, @PageableDefault(sort = "name", direction = Direction.DESC, page = 0, size = 10) Pageable page);
 	
 	@GetMapping("/findByid")
 	@ResponseStatus(value = HttpStatus.OK)
-	public ResponseEntity<ClientDTO> findById(@RequestParam Long id,@RequestParam Integer idade,Pageable page);
+	public ResponseEntity<ClientDTO> findById(@RequestParam Long id,@RequestParam Integer age);
 	
 	@GetMapping("/findByEmail")
 	@ResponseStatus(value = HttpStatus.OK)
-	public ResponseEntity<ClientDTO> findByEmail(@RequestParam String email, @RequestParam Integer idade,@PageableDefault(sort = "email", direction = Direction.DESC, page = 0, size = 10) Pageable page);
+	public ResponseEntity<ClientDTO> findByEmail(@RequestParam String email, @RequestParam Integer age);
 	
 	@PostMapping("/{id}/registerClient")
 	@Transactional
@@ -53,7 +54,7 @@ public interface ClientAPI {
 	
 	@PutMapping("/{id}/editClient")
 	@Transactional
-	public ResponseEntity<ClientDTO> updateClient(@PathVariable Long id, @Validated @RequestBody ClientForm form);
+	public ResponseEntity<ClientDTO> updateClient(@PathVariable Long id, @Validated @RequestBody ClientForm form) throws BusinessException;
 	
 	
 

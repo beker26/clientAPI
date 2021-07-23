@@ -1,11 +1,9 @@
 package br.com.cliente.client.application.api;
 
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
 
 import br.com.cliente.client.domain.Client;
-import br.com.cliente.client.domain.Sexo;
+import br.com.cliente.client.domain.Gender;
 import lombok.Getter;
 
 @Getter
@@ -13,20 +11,20 @@ public class ClientDTO {
 
 	private String name;
 	private String email;
-	private Sexo sexo;
+	private Gender gender;
 	private String whatsapp;
-	private Date birthDate;
+	private Integer age;
 
 	public ClientDTO(Client client) {
 		this.name = client.getName();
 		this.email = client.getEmail();
-		this.sexo = client.getSexo();
+		this.gender = client.getGender();
 		this.whatsapp = client.getWhatsapp();
-		this.birthDate = client.getBirthDate();
+		this.age = client.getAge();
 	}
 
-	public static List<ClientDTO> listClientDto(List<Client> listClient) {
-		return listClient.stream().map(ClientDTO::new).collect(Collectors.toList());
+	public static Page<ClientDTO> convertToPage(Page<Client> client) {
+		return client.map(ClientDTO::new);
 	}
 
 }
