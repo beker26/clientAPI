@@ -1,4 +1,4 @@
-API Cadastro de Clientes
+<p align="center">API Cadastro de Clientes</p>
 Descrição
 Uma simples API que simula um cadastro básico de clientes.
 
