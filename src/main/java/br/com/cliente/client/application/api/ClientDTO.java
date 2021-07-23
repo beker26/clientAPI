@@ -9,6 +9,7 @@ import lombok.Getter;
 @Getter
 public class ClientDTO {
 
+	private Long id;
 	private String name;
 	private String email;
 	private Gender gender;
@@ -16,6 +17,7 @@ public class ClientDTO {
 	private Integer age;
 
 	public ClientDTO(Client client) {
+		this.id = client.getId();
 		this.name = client.getName();
 		this.email = client.getEmail();
 		this.gender = client.getGender();
