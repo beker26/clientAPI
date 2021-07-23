@@ -73,7 +73,7 @@ public class ClientRestController implements ClientAPI {
 	}
 
 	@Override
-	public void deleteClient(Long id) {
+	public void deleteClient(Long id) throws BusinessException {
 		log.info("[Starting] deleteClient - ClientRestController!");
 		clientService.deleteClient(id);
 		log.info("[Finishing] deleteClient - ClientRestController!");

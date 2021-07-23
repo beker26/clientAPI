@@ -50,7 +50,7 @@ public interface ClientAPI {
 	
 	@DeleteMapping("/{id}/deleteClient")
 	@Transactional
-	public void deleteClient(@PathVariable Long id);
+	public void deleteClient(@PathVariable Long id) throws BusinessException;
 	
 	@PutMapping("/{id}/editClient")
 	@Transactional

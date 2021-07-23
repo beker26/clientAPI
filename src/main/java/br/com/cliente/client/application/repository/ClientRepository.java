@@ -24,6 +24,6 @@ public interface ClientRepository {
 
 	Client findById(Long id) throws BusinessException;
 
-	void delete(Long id);
+	void delete(Long id) throws BusinessException;
 
 }

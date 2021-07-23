@@ -59,15 +59,17 @@ public class ClientJpaRepository implements ClientRepository {
 
 	@Override
 	public Client findById(Long id) throws BusinessException {
+		log.info("[Starting] findById - ClientJpaRepository!");
 		Client findById = clientSpringDataJPARepository.findById(id)
 				.orElseThrow(() -> new BusinessException("The client does not exist"));;
+		log.info("[Finishing] findById - ClientJpaRepository!");
 		return findById;
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(Long id) throws BusinessException {
 		log.info("[Starting] delete - ClientJpaRepository!");
-		clientSpringDataJPARepository.deleteById(id);
+		clientSpringDataJPARepository.delete(this.findById(id));
 		log.info("[Finishing] delete - ClientJpaRepository!");
 		
 	}

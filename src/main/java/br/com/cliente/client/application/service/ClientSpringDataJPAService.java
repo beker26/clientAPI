@@ -1,8 +1,6 @@
 package br.com.cliente.client.application.service;
 
 
-import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -76,7 +74,7 @@ public class ClientSpringDataJPAService implements ClientService {
 	}
 
 	@Override
-	public void deleteClient(Long id) {
+	public void deleteClient(Long id) throws BusinessException {
 		log.info("[Starting] deleteClient - ClientSpringDataJPAService!");
 		clientRepository.delete(id);
 		log.info("[Finishing] deleteClient - ClientSpringDataJPAService!");

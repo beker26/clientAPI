@@ -20,6 +20,6 @@ public interface ClientService {
 
 	Client updateClient(Long id, Client client) throws BusinessException;
 
-	void deleteClient(Long id);
+	void deleteClient(Long id) throws BusinessException;
 
 }
